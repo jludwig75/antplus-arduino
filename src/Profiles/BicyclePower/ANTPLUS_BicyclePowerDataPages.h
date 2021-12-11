@@ -6,5 +6,6 @@
 #include <Profiles/BicyclePower/DataPages/ANTPLUS_BicyclePowerStandardCrankTorque.h>
 #include <Profiles/BicyclePower/DataPages/ANTPLUS_BicyclePowerCrankTorqueFrequency.h>
 #include <Profiles/BicyclePower/DataPages/ANTPLUS_BicyclePowerTorqueEffectivenessAndPedalSmoothness.h>
+#include <Profiles/BicyclePower/DataPages/ANTPLUS_BicyclePowerCalibration.h>
 
 #endif // ANTPLUS_PROFILEBICYCLEPOWERDATAPAGES_h

@@ -134,7 +134,7 @@ bool ProfileBicyclePowerSensor::handleGeneralCalibration(BicyclePowerStandardPow
         return false;
     }
 
-    BicyclePowerCalibrationDataPageMsg msg;
+    BicyclePowerCalibrationMsg msg;
     msg.setCalibrationID(0xAC);
     msg.setAutoZeroStatus(0x01);
     msg.setCalibrationData(0);
