@@ -48,7 +48,7 @@ void ProfileBicyclePowerSensor::onAcknowledgedData(AcknowledgedData& msg) {
         called = handleRequestDataPage(dp);
         break;
     case BICYCLEPOWER_GENERALCALIBRATION_NUMBER:
-        called = handleGeneralCalibration(dp);
+        called = handleGeneralCalibration(dp, msg.getData(1));
         break;
     }
     if (!called) {
@@ -129,9 +129,17 @@ bool ProfileBicyclePowerSensor::handleRequestDataPage(BicyclePowerStandardPowerO
     return _onRequestDataPage.call(dp);
 }
 
-bool ProfileBicyclePowerSensor::handleGeneralCalibration(BicyclePowerStandardPowerOnly& dataPage) {
-    // TODO
-    return false;
+bool ProfileBicyclePowerSensor::handleGeneralCalibration(BicyclePowerStandardPowerOnly& dataPage, uint16_t calibrationID) {
+    if (calibrationID != 0xAA) {
+        return false;
+    }
+
+    BicyclePowerCalibrationDataPageMsg msg;
+    msg.setCalibrationID(0xAC);
+    msg.setAutoZeroStatus(0x01);
+    msg.setCalibrationData(0);
+    transmitMsg(msg);
+    return true;
 }
 
 void ProfileBicyclePowerSensor::transmitBicyclePowerStandardPowerOnlyMsg() {

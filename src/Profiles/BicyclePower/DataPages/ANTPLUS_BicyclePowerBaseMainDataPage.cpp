@@ -21,3 +21,36 @@ BicyclePowerBaseMainDataPageMsg::BicyclePowerBaseMainDataPageMsg(uint8_t dataPag
     setDataBuffer(_buffer);
     set8BitValue(dataPageNumber, ANTPLUS_DEFAULT_DATAPAGE_BYTE);
 };
+
+
+template<class T>
+BicyclePowerCalibration<T>::BicyclePowerCalibration() :
+    CoreDataPage<T>() {}
+
+template class BicyclePowerCalibration<BroadcastData>;
+template class BicyclePowerCalibration<BroadcastDataMsg>;
+
+BicyclePowerCalibrationDataPage::BicyclePowerCalibrationDataPage(AntRxDataResponse& dp) :
+    BicyclePowerBaseMainDataPage(dp),
+    BicyclePowerCalibration() {}
+
+BicyclePowerCalibrationDataPageMsg::BicyclePowerCalibrationDataPageMsg() :
+    BicyclePowerBaseMainDataPageMsg(BICYCLEPOWER_GENERALCALIBRATION_NUMBER),
+    BicyclePowerCalibration<BroadcastDataMsg>() {
+    this->set8BitValue(0xFF, 2);
+    this->set8BitValue(0xFF, 3);
+    this->set8BitValue(0xFF, 4);
+    this->set8BitValue(0xFF, 5);
+}
+
+void BicyclePowerCalibrationDataPageMsg::setCalibrationID(uint8_t calibrationID) {
+    set8BitValue(calibrationID, 1);
+}
+
+void BicyclePowerCalibrationDataPageMsg::setAutoZeroStatus(uint8_t autoZeroStatus) {
+    set8BitValue(autoZeroStatus, 2);
+}
+
+void BicyclePowerCalibrationDataPageMsg::setCalibrationData(uint16_t calibrationData) {
+    set16BitValue(calibrationData, 6, 7);
+}

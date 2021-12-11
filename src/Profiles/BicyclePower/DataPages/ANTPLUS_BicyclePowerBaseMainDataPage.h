@@ -18,4 +18,24 @@ protected:
     uint8_t _buffer[MESSAGE_SIZE] = {0};
 };
 
+
+template<class T>
+class BicyclePowerCalibration : virtual public CoreDataPage<T> {
+public:
+    BicyclePowerCalibration();
+};
+
+class BicyclePowerCalibrationDataPage : public BicyclePowerBaseMainDataPage, public BicyclePowerCalibration<BroadcastData> {
+public:
+    explicit BicyclePowerCalibrationDataPage(AntRxDataResponse& dp);
+};
+
+class BicyclePowerCalibrationDataPageMsg : public BicyclePowerBaseMainDataPageMsg, public BicyclePowerCalibration<BroadcastDataMsg> {
+public:
+    explicit BicyclePowerCalibrationDataPageMsg();
+    void setCalibrationID(uint8_t calibrationID);
+    void setAutoZeroStatus(uint8_t autoZeroStatus);
+    void setCalibrationData(uint16_t calibrationData);
+};
+
 #endif // ANTPLUS_BICYCLEPOWERPOWERONLYDATAPAGE_h

@@ -44,7 +44,7 @@ private:
     void transmitProductInfomrationMsg();
     void transmitManufacturesInformationMsg();
     bool handleRequestDataPage(BicyclePowerStandardPowerOnly& dataPage);
-    bool handleGeneralCalibration(BicyclePowerStandardPowerOnly& dataPage);
+    bool handleGeneralCalibration(BicyclePowerStandardPowerOnly& dataPage, uint16_t calibrationID);
     AntCallback<RequestDataPage&> _onRequestDataPage = { .func = NULL };
     AntCallback<BicyclePowerStandardPowerOnlyMsg&> _createBicyclePowerStandardPowerOnlyMsg = { .func = NULL };
     AntCallback<BicyclePowerStandardWheelTorqueMsg&> _createBicyclePowerStandardWheelTorqueMsg = { .func = NULL };
